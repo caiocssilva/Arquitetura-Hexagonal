@@ -1,0 +1,4 @@
+caio:
+  client:
+    address:
+      url: htpp://localhost:8082/addresss
