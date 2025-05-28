@@ -1,11 +1,12 @@
 package com.caio.hexagonal.application.core.usecase;
 
 import com.caio.hexagonal.application.core.domain.Customer;
+import com.caio.hexagonal.application.ports.in.UpdateCustomerInputPort;
 import com.caio.hexagonal.application.ports.out.FindAddressByZipCodeOutputPort;
 import com.caio.hexagonal.application.ports.out.FindCustomerByIdOutputPort;
 import com.caio.hexagonal.application.ports.out.UpdateCustomerOutputPort;
 
-public class UpdateCustomerUseCase {
+public class UpdateCustomerUseCase implements UpdateCustomerInputPort {
 
     private final FindCustomerByIdOutputPort findCustomerByIdOutputPort;
 
@@ -23,6 +24,7 @@ public class UpdateCustomerUseCase {
         this.updateCustomerOutputPort = updateCustomerOutputPort;
     }
 
+    @Override
     public void update(Customer customer, String zipCode) {
         findCustomerByIdOutputPort.find(customer.getId());
         var address = findAddressByZipCodeOutputPort.find(zipCode);
